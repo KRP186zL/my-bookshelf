@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg-color: #f7e9e1;
+  --heading-color: #8aa848;
+  --section-color: #faf2ef;
+  --container-color: #d8e6ba;
+}
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--heading-color);
+}
+
+body {
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  font-family: "QuickSand", sans-serif;
+}
+
+.container,
+.container-buku {
+  margin-block: 30px;
+  padding-bottom: 30px;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 800px;
+  width: 90%;
+  background-color: var(--container-color);
+}
+
+.container header {
+  background-color: var(--heading-color);
+}
+
+header h1.header-text {
+  text-align: center;
+  color: white;
+  display: block;
+  font-size: clamp(2rem, 1.1176rem + 2.9412vw, 3rem);
+  padding-bottom: 2em;
+}
+
+.container main {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+main section {
+  width: 90%;
+  background-color: var(--section-color);
+  padding: 20px 30px;
+  border-radius: 20px;
+  margin-inline: auto;
+}
+
+main section#tambah-buku {
+  margin-top: -5em;
+  transition: 0.4s;
+}
+main section#tambah-buku #form-buku {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#form-buku .form-input input[type="text"],
+#form-buku .form-input input[type="number"],
+#form-buku .form-input .button-tambah,
+#form-cari-buku .form-input input,
+#form-cari-buku .form-input .button-cari,
+.button {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: white;
+  width: 100%;
+  border: 0.3px solid var(--heading-color);
+  font-family: "QuickSand", sans-serif;
+}
+
+#form-cari-buku .form-input {
+  display: flex;
+  gap: 5px;
+  margin-top: 7px;
+  align-items: center;
+}
+#form-cari-buku .form-input input {
+  flex: 2;
+}
+#form-cari-buku .form-input .button-cari {
+  flex: 1;
+}
+.button {
+  cursor: pointer;
+}
+#form-buku .form-input .button-tambah:hover,
+#form-buku .form-input .button-edit:hover,
+#form-cari-buku .form-input .button-cari:hover {
+  background-color: var(--heading-color);
+  color: white;
+  font-weight: bold;
+}
+
+.container-buku {
+  width: 100%;
+  padding: 25px;
+}
+.button-wrapper {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  gap: 10px;
+}
+
+.button-hapus {
+  background-color: red;
+  color: white;
+}
+.button-changeStatus {
+  color: white;
+  background-color: green;
+}
+.button-update {
+  background-color: rgb(243, 137, 17);
+  color: white;
+}
+
+.button-changeStatus:hover,
+.button-hapus:hover,
+.button-update:hover,
+.button-edit:hover {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 850px) {
+  main section#tambah-buku {
+    margin-top: -3em;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .button-wrapper {
+    width: 100%;
+  }
+}

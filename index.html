@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My bookshelf</title>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/assets/style/style.css" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="header-text">My bookshelf</h1>
+      </header>
+      <main>
+        <section id="tambah-buku">
+          <form id="form-buku">
+            <h1>Masukkan Buku</h1>
+            <div class="form-input">
+              <label for="input-judul">Judul Buku</label><br />
+              <input required type="text" id="input-judul" name="judul" />
+            </div>
+            <div class="form-input">
+              <label for="input-penulis">Penulis</label><br />
+              <input required type="text" id="input-penulis" name="penulis" />
+            </div>
+            <div class="form-input">
+              <label for="input-tahun">Tahun</label><br />
+              <input
+                required
+                type="number"
+                min="0"
+                id="input-tahun"
+                name="tahun"
+              />
+            </div>
+            <div class="form-input">
+              <input type="checkbox" name="isReading" id="cek-baca" />
+              <label for="cek-baca">Selesai dibaca</label><br />
+              <button id="tambah" class="button button-tambah" type="submit">
+                Masukkan buku ke rak
+                <span id="is-reading"></span>
+              </button>
+              <button id="edit" type="button" hidden class="button button-edit">
+                Edit buku
+              </button>
+            </div>
+          </form>
+        </section>
+        <section id="cari">
+          <form id="form-cari-buku">
+            <h1>Cari Buku</h1>
+            <div class="form-input">
+              <label for="cari-judul-buku">Judul</label>
+              <input type="text" name="cari-buku" id="cari-judul-buku" />
+              <button type="button" class="button button-cari" id="cari-buku">
+                Cari buku
+              </button>
+            </div>
+            <div id="hasil-cari">
+              <h1 hidden>Belum Dibaca</h1>
+              <div class="daftar-buku" id="cari-belum-baca"></div>
+              <h1 hidden>Sudah Dibaca</h1>
+              <div class="daftar-buku" id="cari-sudah-baca"></div>
+            </div>
+          </form>
+        </section>
+        <section id="belum-dibaca">
+          <h1>Belum Dibaca</h1>
+          <div class="daftar-buku" id="wrapper-belum-buku"></div>
+        </section>
+        <section id="sudah-dibaca">
+          <h1>Sudah Dibaca</h1>
+          <div class="daftar-buku" id="wrapper-sudah-buku"></div>
+        </section>
+      </main>
+    </div>
+    <div class="konfirmasi"></div>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
