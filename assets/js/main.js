@@ -133,8 +133,8 @@ document.getElementById("cari-judul-buku").addEventListener("input", () => {
 
   daftarBuku.forEach((buku) => {
     if (
-      buku.title.toLowerCase().includes(inputCari.value) ||
-      buku.author.toLowerCase().includes(inputCari.value)
+      buku.title.toLowerCase().includes(inputCari.value.toLowerCase()) ||
+      buku.author.toLowerCase().includes(inputCari.value.toLowerCase())
     ) {
       if (buku.isComplete) {
         cariSudahBaca.append(createELementBuku(buku));
