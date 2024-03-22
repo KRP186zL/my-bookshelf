@@ -110,6 +110,10 @@ document.getElementById("cari-judul-buku").addEventListener("input", () => {
   const inputCari = document.getElementById("cari-judul-buku");
   const hasilCari = document.getElementById("hasil-cari");
   hasilCari.style.marginTop = "20px";
+  const cariBelumBaca = document.getElementById("cari-belum-baca");
+  const cariSudahBaca = document.getElementById("cari-sudah-baca");
+  cariBelumBaca.innerHTML = "";
+  cariSudahBaca.innerHTML = "";
 
   const belumBaca = document.getElementById("belum-dibaca");
   const sudahBaca = document.getElementById("sudah-dibaca");
