@@ -5,6 +5,7 @@ const RENDER_BOOK = "renderBuku";
 document.addEventListener("DOMContentLoaded", () => {
   if (checkWebStorage()) {
     getDataFromStorage();
+    handleScreenSize();
     document.dispatchEvent(new Event(RENDER_BOOK));
   } else {
     alert("Browser anda tidak mendukung Web Storage!");
@@ -106,49 +107,101 @@ document.addEventListener(RENDER_BOOK, () => {
   }
 });
 
-document.getElementById("cari-judul-buku").addEventListener("input", () => {
-  const inputCari = document.getElementById("cari-judul-buku");
-  const hasilCari = document.getElementById("hasil-cari");
-  hasilCari.style.marginTop = "20px";
-  const cariBelumBaca = document.getElementById("cari-belum-baca");
-  const cariSudahBaca = document.getElementById("cari-sudah-baca");
-  cariBelumBaca.innerHTML = "";
-  cariSudahBaca.innerHTML = "";
+function handleScreenSize() {
+  var screenWidth = window.innerWidth;
 
-  const belumBaca = document.getElementById("belum-dibaca");
-  const sudahBaca = document.getElementById("sudah-dibaca");
-  belumBaca.setAttribute("hidden", true);
-  sudahBaca.setAttribute("hidden", true);
+  if (screenWidth < 600) {
+    document
+      .getElementById("cari-judul-buku")
+      .addEventListener("change", () => {
+        const inputCari = document.getElementById("cari-judul-buku");
+        const hasilCari = document.getElementById("hasil-cari");
+        hasilCari.style.marginTop = "20px";
+        const cariBelumBaca = document.getElementById("cari-belum-baca");
+        const cariSudahBaca = document.getElementById("cari-sudah-baca");
+        cariBelumBaca.innerHTML = "";
+        cariSudahBaca.innerHTML = "";
 
-  if (inputCari.value === "") {
-    belumBaca.removeAttribute("hidden");
-    sudahBaca.removeAttribute("hidden");
-    const getHeading = document.querySelectorAll("#hasil-cari h1");
-    getHeading.forEach((heading) => {
-      heading.setAttribute("hidden", true);
-    });
-    document.dispatchEvent(new Event(RENDER_BOOK));
-    return;
-  }
+        const belumBaca = document.getElementById("belum-dibaca");
+        const sudahBaca = document.getElementById("sudah-dibaca");
+        belumBaca.setAttribute("hidden", true);
+        sudahBaca.setAttribute("hidden", true);
 
-  daftarBuku.forEach((buku) => {
-    if (
-      buku.title.toLowerCase().includes(inputCari.value) ||
-      buku.author.toLowerCase().includes(inputCari.value)
-    ) {
-      if (buku.isComplete) {
-        cariSudahBaca.append(createELementBuku(buku));
-      } else {
-        cariBelumBaca.append(createELementBuku(buku));
+        if (inputCari.value === "") {
+          belumBaca.removeAttribute("hidden");
+          sudahBaca.removeAttribute("hidden");
+          const getHeading = document.querySelectorAll("#hasil-cari h1");
+          getHeading.forEach((heading) => {
+            heading.setAttribute("hidden", true);
+          });
+          document.dispatchEvent(new Event(RENDER_BOOK));
+          return;
+        }
+
+        daftarBuku.forEach((buku) => {
+          if (
+            buku.title.toLowerCase().includes(inputCari.value) ||
+            buku.author.toLowerCase().includes(inputCari.value)
+          ) {
+            if (buku.isComplete) {
+              cariSudahBaca.append(createELementBuku(buku));
+            } else {
+              cariBelumBaca.append(createELementBuku(buku));
+            }
+          }
+        });
+
+        const getHeading = document.querySelectorAll("#hasil-cari h1");
+        getHeading.forEach((heading) => {
+          heading.removeAttribute("hidden");
+        });
+      });
+  } else {
+    document.getElementById("cari-judul-buku").addEventListener("input", () => {
+      const inputCari = document.getElementById("cari-judul-buku");
+      const hasilCari = document.getElementById("hasil-cari");
+      hasilCari.style.marginTop = "20px";
+      const cariBelumBaca = document.getElementById("cari-belum-baca");
+      const cariSudahBaca = document.getElementById("cari-sudah-baca");
+      cariBelumBaca.innerHTML = "";
+      cariSudahBaca.innerHTML = "";
+
+      const belumBaca = document.getElementById("belum-dibaca");
+      const sudahBaca = document.getElementById("sudah-dibaca");
+      belumBaca.setAttribute("hidden", true);
+      sudahBaca.setAttribute("hidden", true);
+
+      if (inputCari.value === "") {
+        belumBaca.removeAttribute("hidden");
+        sudahBaca.removeAttribute("hidden");
+        const getHeading = document.querySelectorAll("#hasil-cari h1");
+        getHeading.forEach((heading) => {
+          heading.setAttribute("hidden", true);
+        });
+        document.dispatchEvent(new Event(RENDER_BOOK));
+        return;
       }
-    }
-  });
 
-  const getHeading = document.querySelectorAll("#hasil-cari h1");
-  getHeading.forEach((heading) => {
-    heading.removeAttribute("hidden");
-  });
-});
+      daftarBuku.forEach((buku) => {
+        if (
+          buku.title.toLowerCase().includes(inputCari.value) ||
+          buku.author.toLowerCase().includes(inputCari.value)
+        ) {
+          if (buku.isComplete) {
+            cariSudahBaca.append(createELementBuku(buku));
+          } else {
+            cariBelumBaca.append(createELementBuku(buku));
+          }
+        }
+      });
+
+      const getHeading = document.querySelectorAll("#hasil-cari h1");
+      getHeading.forEach((heading) => {
+        heading.removeAttribute("hidden");
+      });
+    });
+  }
+}
 
 function clearInput() {
   const checkboxInput = document.getElementById("cek-baca");
