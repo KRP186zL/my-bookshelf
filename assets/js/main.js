@@ -106,7 +106,7 @@ document.addEventListener(RENDER_BOOK, () => {
   }
 });
 
-document.getElementById("cari-judul-buku").addEventListener("change", () => {
+document.getElementById("cari-judul-buku").addEventListener("input", () => {
   const inputCari = document.getElementById("cari-judul-buku");
   const hasilCari = document.getElementById("hasil-cari");
   hasilCari.style.marginTop = "20px";
